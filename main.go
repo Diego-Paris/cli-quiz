@@ -7,14 +7,13 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"strconv"
 	"strings"
 	"time"
 )
 
 type data struct {
 	points int
-	sheet  map[string]int
+	sheet  map[string]string
 }
 
 var (
@@ -31,14 +30,11 @@ func main() {
 
 	flag.Parse()
 
-	// Read the csv answer sheet
 	records := readCSV(*file)
 
-	// take each line of the csv and turn into a map with actual num
-	sheet := make(map[string]int)
+	sheet := make(map[string]string)
 	for _, line := range records {
-		num, _ := strconv.Atoi(line[1])
-		sheet[line[0]] = num
+		sheet[line[0]] = line[1]
 	}
 
 	quiz := data{
@@ -48,6 +44,8 @@ func main() {
 
 	ch := make(chan int)
 
+	fmt.Println("Quiz has started!")
+	fmt.Printf("Total time: %v seconds\n", *duration)
 	go startQuiz(&quiz, ch)
 	go timer(*duration, ch)
 
@@ -70,10 +68,9 @@ func startQuiz(quiz *data, ch chan<- int) {
 
 		fmt.Printf("Problem #%v: %v = ", i, k)
 		text, _ := reader.ReadString('\n')
-
-		answ, _ := strconv.Atoi(strings.Trim(text, "\n "))
-
-		if answ == v {
+		text = strings.Trim(text, "\n ")
+		
+		if text == v {
 			quiz.points++
 		}
 
