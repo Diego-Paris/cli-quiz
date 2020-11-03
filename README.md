@@ -39,7 +39,7 @@ Problem #1: 2+4 =
 ...
 ```
 
-### Answer sheet example
+### Question sheet example
 > Note: Project only reads csv files
 ```
 5+5,10
