@@ -15,7 +15,7 @@ For more information about installing Go, visit [golang.org/doc/install](https:/
 
 ## Installation
 ```bash
-git clone https://github.com/Diego-Paris/go-concurrent-retry
+git clone https://github.com/Diego-Paris/cli-quiz
 ```
 
 ## Flags
@@ -61,4 +61,4 @@ Problem #1: 2+4 =
 Pull requests are welcome.
 
 ## License
-[MIT](https://github.com/Diego-Paris/go-concurrent-retry/blob/master/LICENSE)
+[MIT](https://github.com/Diego-Paris/cli-quiz/blob/master/LICENSE)
