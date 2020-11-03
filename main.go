@@ -22,7 +22,7 @@ var (
 )
 
 func init() {
-	file = flag.String("test", "problems.csv", "test filepath")
+	file = flag.String("test", "problems.csv", "path to test file")
 	duration = flag.Int("time", 10, "test duration in seconds")
 }
 
@@ -51,7 +51,7 @@ func main() {
 
 	<-ch
 
-	fmt.Printf("You scored %v out of %v!\n", quiz.points, len(quiz.sheet))
+	fmt.Printf("\nYou scored %v out of %v!\n", quiz.points, len(quiz.sheet))
 }
 
 func timer(delay int, ch chan<- int) {
@@ -68,9 +68,14 @@ func startQuiz(quiz *data, ch chan<- int) {
 
 		fmt.Printf("Problem #%v: %v = ", i, k)
 		text, _ := reader.ReadString('\n')
-		text = strings.Trim(text, "\n ")
+
+		// Allows to read from windows terminals
+		//text = strings.Replace(text, "\r\n", "", -1)
+		text = strings.Trim(text, "\r\n ")
 		
+		//fmt.Println("\""+ text + "\"")
 		if text == v {
+			//fmt.Println("point added")
 			quiz.points++
 		}
 
