@@ -23,7 +23,7 @@ var (
 
 func init() {
 	file = flag.String("test", "problems.csv", "path to test file")
-	duration = flag.Int("time", 10, "test duration in seconds")
+	duration = flag.Int("time", 10, "quiz duration in seconds")
 }
 
 func main() {
